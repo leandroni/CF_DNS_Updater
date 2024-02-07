@@ -50,6 +50,11 @@ data = json.loads(res.read())
 
 proxied = False
 type = 'A'
+if data is None:
+    logging.error(
+        'No data from Cloudflare, are your environment variables set',
+    )
+    exit()
 for items in data['result']:
     logging.info(
         f"Record ID for {items['name']} (type {items['type']}): \
